@@ -6,6 +6,7 @@ import { useColorModeValue } from "@src/components/ui/color-mode";
 
 function LoginHeader() {
   const backBg = useColorModeValue("blue.200","blue.400")
+  const backColor = useColorModeValue("blue.400","blue.600")
   const navigate = useNavigate();
   const isSmall = isSmallDevice();
 
@@ -31,7 +32,7 @@ function LoginHeader() {
           ]}
         />
       ) : (
-        <Button type="button" variant={"outline"} size={"lg"} onClick={back} bgColor={backBg} display={"flex"} alignItems={"center"}>
+        <Button type="button" variant={"outline"} size={"lg"} onClick={back} bgColor={backBg} display={"flex"} alignItems={"center"} color={backColor}>
           <LuChevronLeft/>
           Back
         </Button>
