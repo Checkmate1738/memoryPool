@@ -103,9 +103,10 @@ export function SmallDeviceNav({data}) {
           <Drawer.Backdrop />
           <Drawer.Positioner padding={4}>
             <Drawer.Content rounded="md">
-              <Drawer.Body>
+              <Drawer.Header></Drawer.Header>
+              <Drawer.Body overflowY={"scroll"}>
                 {navs.map((item, index) => (
-                  <Box margin={2} border={"1px solid green"} padding={4} key={index}>
+                  <Box margin={2} borderBottom={"1px solid silver"} padding={4} key={index}>
                     {item}
                   </Box>
                 ))}

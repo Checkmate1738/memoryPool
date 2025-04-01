@@ -15,7 +15,7 @@ function LoginHeader() {
         {isSmall ? (
           <SmallDeviceNav
             data={[
-              <Button type="button" variant={"outline"} onClick={back}>
+              <Button type="button" variant={"plain"} onClick={back}>
                 Back
               </Button>,
             ]}
