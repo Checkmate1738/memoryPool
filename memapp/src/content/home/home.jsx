@@ -32,7 +32,7 @@ function Auth() {
       ]}
     />
   ) : (
-    <HStack spaceX={"1px"}>
+    <HStack spaceX={"1px"} fontSize={20}>
       <LinkStyle as={MainLink} variant={"plain"} to="/auth/login" color={linkColor}>
         Login
       </LinkStyle>
