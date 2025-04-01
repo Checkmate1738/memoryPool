@@ -9,10 +9,10 @@ function Auth() {
   return small ? (
     <SmallDeviceNav
       data={[
-        <LinkStyle as={MainLink} to="/auth/login">
+        <LinkStyle as={MainLink} to="/auth/login" padding={2} width={"100%"}>
           Login
         </LinkStyle>,
-        <LinkStyle as={MainLink} to="/auth/register">
+        <LinkStyle as={MainLink} to="/auth/register" padding={2} width={"100%"}>
           Register
         </LinkStyle>,
       ]}

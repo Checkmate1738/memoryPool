@@ -93,31 +93,40 @@ export function SmallDeviceNav({data}) {
 
   return (
     <>
-      <Drawer.Root size={"xs"}>
-        <Drawer.Trigger asChild>
-          <Button>
-            <LuAlignJustify />
-          </Button>
-        </Drawer.Trigger>
-        <Portal>
-          <Drawer.Backdrop />
-          <Drawer.Positioner padding={4}>
-            <Drawer.Content rounded="md">
-              <Drawer.Header></Drawer.Header>
-              <Drawer.Body overflowY={"scroll"}>
-                {navs.map((item, index) => (
-                  <Box margin={2} borderBottom={"1px solid silver"} padding={4} key={index}>
-                    {item}
-                  </Box>
-                ))}
-              </Drawer.Body>
-              <Drawer.CloseTrigger asChild>
-                <CloseButton />
-              </Drawer.CloseTrigger>
-            </Drawer.Content>
-          </Drawer.Positioner>
-        </Portal>
-      </Drawer.Root>
+      <Box>
+        <Drawer.Root colorPalette={"blue"} size={"xs"} trapFocus={false}>
+          <Drawer.Trigger asChild>
+            <Button>
+              <LuAlignJustify />
+            </Button>
+          </Drawer.Trigger>
+          <Portal>
+            <Drawer.Backdrop />
+            <Drawer.Positioner>
+              <Drawer.Content>
+                <Drawer.Header></Drawer.Header>
+                <Drawer.Body overflowY={"scroll"}>
+                  {navs.map((item, index) => (
+                    <Box
+                      bgColor={"colorPalette.900"}
+                      fontSize={24}
+                      padding={2}
+                      key={index}
+                      marginTop={2}
+                      borderRadius={8}
+                    >
+                      {item}
+                    </Box>
+                  ))}
+                </Drawer.Body>
+                <Drawer.CloseTrigger asChild>
+                  <CloseButton />
+                </Drawer.CloseTrigger>
+              </Drawer.Content>
+            </Drawer.Positioner>
+          </Portal>
+        </Drawer.Root>
+      </Box>
     </>
   );
 }
