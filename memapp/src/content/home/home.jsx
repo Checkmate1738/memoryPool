@@ -6,7 +6,8 @@ import { useContext } from "react";
 import { NavHeader, STATE, isSmallDevice, SmallDeviceNav } from "@src/App";
 
 function Auth() {
-  const linkColor = useColorModeValue("purple.900","blue.200")
+  const linkColor = useColorModeValue("blue.800","blue.200")
+  const linkBg = useColorModeValue("transparent","transparent")
   const small = isSmallDevice();
   return small ? (
     <SmallDeviceNav
@@ -33,11 +34,11 @@ function Auth() {
     />
   ) : (
     <HStack spaceX={"1px"} fontSize={20}>
-      <LinkStyle as={MainLink} variant={"plain"} to="/auth/login" color={linkColor}>
+      <LinkStyle as={MainLink} variant={"plain"} to="/auth/login" color={linkColor} bgColor={linkBg}>
         Login
       </LinkStyle>
       <p>/</p>
-      <LinkStyle as={MainLink} variant={"plain"} to="/auth/register" color={linkColor}>
+      <LinkStyle as={MainLink} variant={"plain"} to="/auth/register" color={linkColor} bgColor={linkBg}>
         Register
       </LinkStyle>
     </HStack>
