@@ -16,6 +16,9 @@ function Auth() {
           padding={2}
           width={"100%"}
           colorScheme={"dark"}
+          colorPalette={"blue"}
+          bgColor={"colorPalette.300"}
+          color={"colorPalette.700"}
         >
           Login
         </LinkStyle>,
