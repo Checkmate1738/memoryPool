@@ -48,13 +48,11 @@ function Auth() {
 export default function Home() {
   const { bg_color } = useContext(STATE);
   return (
-    <Box colorPalette={"cyan"}>
+    <Box>
       <NavHeader nav={<Auth />} />
       <Box
         position={"absolute"}
         top={24}
-        minHeight={"100vh"}
-        bgColor={"colorPalette.900"}
         width={"100vw"}
       >
         <p>Home</p>
