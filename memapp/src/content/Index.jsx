@@ -10,9 +10,7 @@ import {
   createBrowserRouter,
   RouterProvider,
   redirect,
-  Link as MainLink
 } from "react-router-dom";
-import { Box, Heading, Text,HStack, Link as LinkStyle } from "@chakra-ui/react";
 
 function checkAuth() {
   let isAuthenticated = false;
@@ -86,8 +84,7 @@ export default function Index() {
 
   return (
     <>
-      <RouterProvider router={paths} />;
-      
+      <RouterProvider router={paths} />
     </>
   );
 }
