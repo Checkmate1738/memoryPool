@@ -15,6 +15,7 @@ function Auth() {
           to="/auth/login"
           padding={2}
           width={"100%"}
+          colorScheme={"dark"}
         >
           Login
         </LinkStyle>,
