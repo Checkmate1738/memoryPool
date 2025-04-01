@@ -12,7 +12,7 @@ function RegisterHeader() {
     return (
         <>
         <HStack>
-            <Button type="button" onClick={back}>Back</Button>
+            <Button type="button" variant={"outline"} onClick={back}>Back</Button>
         </HStack>
         </>
     )
@@ -21,7 +21,7 @@ function RegisterHeader() {
 export default function Register() {
     return <>
     <NavHeader nav={<RegisterHeader/>}/>
-    <Box position={"absolute"} top={24}>
+    <Box position={"absolute"} top={24} width={"100vw"}>
         {"Register"}
     </Box>
     </>

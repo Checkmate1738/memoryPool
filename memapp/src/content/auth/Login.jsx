@@ -12,7 +12,7 @@ function LoginHeader() {
     return (
         <>
         <HStack>
-            <Button type="button" onClick={back}>Back</Button>
+            <Button type="button" variant={"outline"} onClick={back}>Back</Button>
         </HStack>
         </>
     )
@@ -22,7 +22,7 @@ export default function Login() {
     return (
       <>
         <NavHeader nav={<LoginHeader />} />
-        <Box position={"absolute"} top={24}>
+        <Box position={"absolute"} top={24} width={"100vw"}>
           {"Login"}
         </Box>
       </>

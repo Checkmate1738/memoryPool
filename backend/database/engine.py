@@ -2,9 +2,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-username = "lantern"
-password = "rayo254"
-host = "localhost"
+username = "brian"
+password = "brian$sql"
+host = "102.208.44.38"
 port = 3306
 database = "memory"
 
