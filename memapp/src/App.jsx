@@ -13,13 +13,15 @@ import {
 } from "@chakra-ui/react";
 import { Link as Route } from "react-router-dom";
 //import {}
-import { useColorModeValue } from "./components/ui/color-mode";
+import { useColorModeValue, useColorMode } from "./components/ui/color-mode";
 import { redirect } from "react-router-dom";
 import { LuAlignJustify } from "react-icons/lu";
 
 export const STATE = createContext();
 
 export const NavHeader = ({ nav }) => {
+  const { toggleColorMode } = useColorMode();
+  const small = isSmallDevice();
   return (
     <>
       <Box
@@ -44,7 +46,7 @@ export const NavHeader = ({ nav }) => {
             paddingY={1}
             cursor={"pointer"}
             onClick={() => {
-              return redirect("/");
+              toggleColorMode();
             }}
           >
             <Heading
@@ -67,17 +69,16 @@ export const NavHeader = ({ nav }) => {
   );
 };
 
-export function isSmallDevice(){
-  const [isSmall,setIsSmall] = useState(false)
+export function isSmallDevice() {
+  const [isSmall, setIsSmall] = useState(false);
 
-  useEffect(()=>{
-    console.log(window.innerWidth)
-    if (window.innerWidth < 1000){
-      setIsSmall(true)
-    }else{
-      setIsSmall(false)
+  useEffect(() => {
+    if (window.innerWidth < 1000) {
+      setIsSmall(true);
+    } else {
+      setIsSmall(false);
     }
-  },[])
+  }, []);
 
   return isSmall;
 }
@@ -88,8 +89,9 @@ export function isSmallDevice(){
                   </Link>
 */
 
-export function SmallDeviceNav({data}) {
+export function SmallDeviceNav({ data }) {
   const navs = data;
+  const bg_drawer = useColorModeValue("colorPalette.500", "colorPalette.900");
 
   return (
     <>
@@ -108,7 +110,7 @@ export function SmallDeviceNav({data}) {
                 <Drawer.Body overflowY={"scroll"}>
                   {navs.map((item, index) => (
                     <Box
-                      bgColor={"colorPalette.900"}
+                      bgColor={bg_drawer}
                       fontSize={24}
                       padding={2}
                       key={index}
