@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { NavHeader, STATE, isSmallDevice, SmallDeviceNav } from "@src/App";
 
 function Auth() {
-  const linkColor = useColorModeValue("blue.500","blue.200")
+  const linkColor = useColorModeValue("blue.800","blue.200")
   const small = isSmallDevice();
   return small ? (
     <SmallDeviceNav
@@ -17,10 +17,6 @@ function Auth() {
           to="/auth/login"
           padding={2}
           width={"100%"}
-          colorScheme={"dark"}
-          colorPalette={"blue"}
-          bgColor={"colorPalette.300"}
-          color={"colorPalette.700"}
         >
           Login
         </LinkStyle>,
