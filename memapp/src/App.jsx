@@ -2,6 +2,7 @@ import { createContext } from "react";
 import Index from "@src/content/Index";
 import { Box, Heading, Text, HStack } from "@chakra-ui/react";
 import { useColorModeValue } from "./components/ui/color-mode";
+import { redirect } from "react-router-dom";
 
 export const STATE = createContext();
 
@@ -29,6 +30,7 @@ export const NavHeader = ({ nav }) => {
             paddingX={4}
             paddingY={1}
             cursor={"pointer"}
+            onClick={()=>{return redirect("/")}}
           >
             <Heading
               as="h2"
