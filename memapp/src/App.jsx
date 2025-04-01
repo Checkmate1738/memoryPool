@@ -8,7 +8,6 @@ import {
   CloseButton,
   Drawer,
   Portal,
-  Link,
   Button,
 } from "@chakra-ui/react";
 import { Link as Route } from "react-router-dom";
@@ -21,6 +20,7 @@ export const STATE = createContext();
 
 export const NavHeader = ({ nav }) => {
   const { toggleColorMode } = useColorMode();
+  const titleColor = useColorModeValue("colorPalette.300", "colorPalette.400");
   const small = isSmallDevice();
   return (
     <>
@@ -40,7 +40,7 @@ export const NavHeader = ({ nav }) => {
         >
           <Box
             justifySelf={"flex-start"}
-            bgColor={"colorPalette.300"}
+            bgColor={titleColor}
             borderRadius={12}
             paddingX={4}
             paddingY={1}
