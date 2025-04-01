@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { NavHeader, STATE, isSmallDevice, SmallDeviceNav } from "@src/App";
 
 function Auth() {
-  const linkColor = useColorModeValue("blue.800","blue.200")
+  const linkColor = useColorModeValue("black","blue.200")
   const linkBg = useColorModeValue("salmon","salmon")
   const small = isSmallDevice();
   return small ? (
