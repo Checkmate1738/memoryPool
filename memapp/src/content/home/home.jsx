@@ -2,10 +2,22 @@ import { Box, Text, Heading, HStack } from "@chakra-ui/react";
 import { Link as MainLink } from "react-router-dom";
 import { Link as LinkStyle } from "@chakra-ui/react";
 import { useContext } from "react";
-import { NavHeader,STATE } from "@src/App";
+import { NavHeader, STATE, isSmallDevice, SmallDeviceNav } from "@src/App";
 
 function Auth() {
-  return (
+  const small = isSmallDevice();
+  return small ? (
+    <SmallDeviceNav
+      data={[
+        <LinkStyle as={MainLink} to="/auth/login">
+          Login
+        </LinkStyle>,
+        <LinkStyle as={MainLink} to="/auth/register">
+          Register
+        </LinkStyle>,
+      ]}
+    />
+  ) : (
     <HStack spaceX={"1px"}>
       <LinkStyle as={MainLink} to="/auth/login">
         Login
@@ -19,11 +31,17 @@ function Auth() {
 }
 
 export default function Home() {
-  const {bg_color} = useContext(STATE)
+  const { bg_color } = useContext(STATE);
   return (
     <Box colorPalette={"cyan"}>
-      <NavHeader nav={<Auth/>}/>
-      <Box position={"absolute"} top={24} minHeight={"100vh"} bgColor={"colorPalette.900"} width={"100vw"}>
+      <NavHeader nav={<Auth />} />
+      <Box
+        position={"absolute"}
+        top={24}
+        minHeight={"100vh"}
+        bgColor={"colorPalette.900"}
+        width={"100vw"}
+      >
         <p>Home</p>
       </Box>
     </Box>

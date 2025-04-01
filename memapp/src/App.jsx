@@ -71,6 +71,7 @@ export function isSmallDevice(){
   const [isSmall,setIsSmall] = useState(false)
 
   useEffect(()=>{
+    console.log(window.innerWidth)
     if (window.innerWidth < 1000){
       setIsSmall(true)
     }else{
@@ -87,7 +88,7 @@ export function isSmallDevice(){
                   </Link>
 */
 
-export function SmallDeviceNav([[...data]]) {
+export function SmallDeviceNav({data}) {
   const navs = data;
 
   return (
