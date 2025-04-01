@@ -30,8 +30,14 @@ export const NavHeader = ({ nav }) => {
             paddingY={1}
             cursor={"pointer"}
           >
-            <Heading as="h2" fontSize={"xx-large"} color={"colorPalette.600"}>
-              {"Memory App"}
+            <Heading
+              as="h2"
+              display={"flex"}
+              fontSize={"xx-large"}
+              color={"colorPalette.600"}
+              flexWrap={"nowrap"}
+            >
+              {"Memory"}
             </Heading>
             <Text as="p" color={"colorPalette.100"}>
               {"store tasks and notes"}
