@@ -10,11 +10,10 @@ import {
   createBrowserRouter,
   RouterProvider,
   redirect,
-  Outlet,
   Link as MainLink
 } from "react-router-dom";
 import { Box, Heading, Text,HStack, Link as LinkStyle } from "@chakra-ui/react";
-
+/*
 function Auth() {
   return (
     <HStack spaceX={20}>
@@ -29,6 +28,12 @@ function Auth() {
   );
 }
 
+<Box>
+        <Heading as="h2">{"Memory Pool"}</Heading>
+        <Text as="p">{"store tasks and notes"}</Text>
+        <Auth />
+      </Box>
+*/
 function checkAuth() {
   let isAuthenticated = false;
   let isAuthorized = false;
@@ -102,12 +107,7 @@ export default function Index() {
   return (
     <>
       <RouterProvider router={paths} />;
-      <Box>
-        <Heading as="h2">{"Memory Pool"}</Heading>
-        <Text as="p">{"store tasks and notes"}</Text>
-        <Auth />
-      </Box>
-      <Outlet />
+      
     </>
   );
 }
