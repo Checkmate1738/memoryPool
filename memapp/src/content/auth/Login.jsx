@@ -32,7 +32,7 @@ function LoginHeader() {
           ]}
         />
       ) : (
-        <Button type="button" variant={"outline"} size={"lg"} onClick={back} bgColor={backBg} display={"flex"} alignItems={"center"} color={backColor}>
+        <Button type="button" variant={"subtle"} borderRadius={12} size={"lg"} onClick={back} bgColor={backBg} display={"flex"} alignItems={"center"} color={backColor}>
           <LuChevronLeft/>
           Back
         </Button>

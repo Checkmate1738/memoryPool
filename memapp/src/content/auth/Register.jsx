@@ -31,7 +31,7 @@ function RegisterHeader() {
       />
     ) : (
       <HStack>
-        <Button type="button" variant={"outline"} size={"lg"} onClick={back} bgColor={backBg} display={"flex"} alignItems={"center"} justifyContent={"flex-start"} color={backColor}>
+        <Button type="button" variant={"subtle"} borderRadius={12} size={"lg"} onClick={back} bgColor={backBg} display={"flex"} alignItems={"center"} justifyContent={"flex-start"} color={backColor}>
           <LuChevronLeft/>
           Back
         </Button>
