@@ -13,27 +13,7 @@ import {
   Link as MainLink
 } from "react-router-dom";
 import { Box, Heading, Text,HStack, Link as LinkStyle } from "@chakra-ui/react";
-/*
-function Auth() {
-  return (
-    <HStack spaceX={20}>
-      <LinkStyle as={MainLink} to="/auth/register">
-        Register
-      </LinkStyle>
 
-      <LinkStyle as={MainLink} to="/auth/login">
-        Login
-      </LinkStyle>
-    </HStack>
-  );
-}
-
-<Box>
-        <Heading as="h2">{"Memory Pool"}</Heading>
-        <Text as="p">{"store tasks and notes"}</Text>
-        <Auth />
-      </Box>
-*/
 function checkAuth() {
   let isAuthenticated = false;
   let isAuthorized = false;
