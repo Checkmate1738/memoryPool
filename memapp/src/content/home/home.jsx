@@ -38,7 +38,7 @@ function Auth() {
         Login
       </LinkStyle>
       <p>/</p>
-      <LinkStyle as={MainLink} variant={"plain"} to="/auth/register" color={linkColor} bgColor={linkBg}>
+      <LinkStyle as={MainLink} variant={"plain"} to="/auth/register" color={linkColor} bgColor={linkBg} padding={4} borderRadius={12}>
         Register
       </LinkStyle>
     </HStack>
