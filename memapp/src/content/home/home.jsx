@@ -1,10 +1,12 @@
 import { Box, Text, Heading, HStack } from "@chakra-ui/react";
 import { Link as MainLink } from "react-router-dom";
 import { Link as LinkStyle } from "@chakra-ui/react";
+import { useColorModeValue } from "@src/components/ui/color-mode";
 import { useContext } from "react";
 import { NavHeader, STATE, isSmallDevice, SmallDeviceNav } from "@src/App";
 
 function Auth() {
+  const linkColor = useColorModeValue("blue.500","blue.200")
   const small = isSmallDevice();
   return small ? (
     <SmallDeviceNav
@@ -35,11 +37,11 @@ function Auth() {
     />
   ) : (
     <HStack spaceX={"1px"}>
-      <LinkStyle as={MainLink} variant={"plain"} to="/auth/login">
+      <LinkStyle as={MainLink} variant={"plain"} to="/auth/login" color={linkColor}>
         Login
       </LinkStyle>
       <p>/</p>
-      <LinkStyle as={MainLink} variant={"plain"} to="/auth/register">
+      <LinkStyle as={MainLink} variant={"plain"} to="/auth/register" color={linkColor}>
         Register
       </LinkStyle>
     </HStack>
