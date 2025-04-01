@@ -6,7 +6,7 @@ import { LuChevronLeft } from "react-icons/lu"
 
 function RegisterHeader() {
     const backBg = useColorModeValue("blue.200","blue.400")
-    const backColor = useColorModeValue("blue.400","blue.600")
+    const backColor = useColorModeValue("blue.500","blue.800")
     const navigate = useNavigate()
     const small = isSmallDevice()
 
