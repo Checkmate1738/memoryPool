@@ -9,21 +9,33 @@ function Auth() {
   return small ? (
     <SmallDeviceNav
       data={[
-        <LinkStyle as={MainLink} to="/auth/login" padding={2} width={"100%"}>
+        <LinkStyle
+          as={MainLink}
+          variant={"plain"}
+          to="/auth/login"
+          padding={2}
+          width={"100%"}
+        >
           Login
         </LinkStyle>,
-        <LinkStyle as={MainLink} to="/auth/register" padding={2} width={"100%"}>
+        <LinkStyle
+          as={MainLink}
+          variant={"plain"}
+          to="/auth/register"
+          padding={2}
+          width={"100%"}
+        >
           Register
         </LinkStyle>,
       ]}
     />
   ) : (
     <HStack spaceX={"1px"}>
-      <LinkStyle as={MainLink} to="/auth/login">
+      <LinkStyle as={MainLink} variant={"plain"} to="/auth/login">
         Login
       </LinkStyle>
       <p>/</p>
-      <LinkStyle as={MainLink} to="/auth/register">
+      <LinkStyle as={MainLink} variant={"plain"} to="/auth/register">
         Register
       </LinkStyle>
     </HStack>
