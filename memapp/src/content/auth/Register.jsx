@@ -28,7 +28,7 @@ function RegisterHeader() {
       />
     ) : (
       <HStack>
-        <Button type="button" variant={"outline"} onClick={back}>
+        <Button type="button" size="lg" variant={"outline"} onClick={back}>
           Back
         </Button>
       </HStack>

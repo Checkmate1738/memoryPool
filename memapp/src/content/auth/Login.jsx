@@ -31,7 +31,7 @@ function LoginHeader() {
           ]}
         />
       ) : (
-        <Button type="button" variant={"outline"} onClick={back} bgColor={backBg} display={"flex"} alignItems={"center"}>
+        <Button type="button" variant={"outline"} size={"lg"} onClick={back} bgColor={backBg} display={"flex"} alignItems={"center"}>
           <LuChevronLeft/>
           Back
         </Button>
