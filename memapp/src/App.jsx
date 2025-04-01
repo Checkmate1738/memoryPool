@@ -45,7 +45,7 @@ export const NavHeader = ({ nav }) => {
             paddingX={4}
             paddingY={1}
             cursor={"pointer"}
-            onClick={() => {
+            onDoubleClick={() => {
               toggleColorMode();
             }}
           >
