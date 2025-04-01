@@ -1,33 +1,37 @@
 import { createContext } from "react";
 import Index from "@src/content/Index";
-import {
-  Box,
-  Heading,
-  Text,
-  HStack,
-} from "@chakra-ui/react";
+import { Box, Heading, Text, HStack } from "@chakra-ui/react";
+import { useColorModeValue } from "./components/ui/color-mode";
 
 export const STATE = createContext();
 
-export const NavHeader = ({nav}) => {
+export const NavHeader = ({ nav, bColor }) => {
   return (
     <>
-      <HStack display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
-        <Box>
-          <Heading as="h2">{"Memory Pool"}</Heading>
-          <Text as="p">{"store tasks and notes"}</Text>
-        </Box>
-        <Box>
-          {nav}
-        </Box>
-      </HStack>
+      <Box position={"fixed"} width={"100%"}>
+        <HStack
+          display={"flex"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          padding={4}
+          borderBottom={`2px solid ${bColor}`}
+        >
+          <Box justifySelf={"flex-start"}>
+            <Heading as="h2">{"Memory App"}</Heading>
+            <Text as="p">{"store tasks and notes"}</Text>
+          </Box>
+          <Box alignSelf={"center"}>{nav}</Box>
+        </HStack>
+      </Box>
     </>
   );
 };
 
 function App() {
   const title = "MEMPOOL";
-  const values = { title };
+  const navBorderColor = useColorModeValue("black", "silver");
+  const bg_color = useColorModeValue("silver", "purple");
+  const values = { title, navBorderColor, bg_color };
 
   return (
     <>
