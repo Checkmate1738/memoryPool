@@ -1,0 +1,39 @@
+# created by virtualenv automatically
+# created by virtualenv automatically
+# Virtual environment
+venv/
+bin/
+lib/
+include/
+.env
+*.env
+*.cfg
+*.TAG
+
+# Byte-compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs and cache
+*.log
+logs/
+cache/
+
+# Build and distribution files
+build/
+dist/
+*.egg-info/
+
+# IDE-specific files
+.vscode/
+.idea/
+*.iml
+
+# System-specific files
+.DS_Store
+Thumbs.db
+
+# Render-specific (if using Git for config secrets)
+render.yaml
