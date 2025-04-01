@@ -7,7 +7,7 @@ import { NavHeader, STATE, isSmallDevice, SmallDeviceNav } from "@src/App";
 
 function Auth() {
   const linkColor = useColorModeValue("black","blue.200")
-  const linkBg = useColorModeValue("salmon","salmon")
+  const linkBg = useColorModeValue("brown","salmon")
   const small = isSmallDevice();
   return small ? (
     <SmallDeviceNav
@@ -34,11 +34,11 @@ function Auth() {
     />
   ) : (
     <HStack spaceX={"1px"} fontSize={20}>
-      <LinkStyle as={MainLink} variant={"plain"} to="/auth/login" color={linkColor} bgColor={linkBg}>
+      <LinkStyle as={MainLink} variant={"plain"} to="/auth/login" color={linkColor}>
         Login
       </LinkStyle>
       <p>/</p>
-      <LinkStyle as={MainLink} variant={"plain"} to="/auth/register" color={linkColor} bgColor={linkBg} padding={4} borderRadius={12}>
+      <LinkStyle as={MainLink} variant={"plain"} to="/auth/register" color={linkColor} bgColor={linkBg} paddingX={2} paddingY={1} borderRadius={12}>
         Register
       </LinkStyle>
     </HStack>
