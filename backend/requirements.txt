@@ -6,4 +6,5 @@ python-multipart
 pydantic
 pyjwt
 passlib[bcrypt]
+dotenv
 email_validator

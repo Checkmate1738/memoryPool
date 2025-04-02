@@ -93,6 +93,16 @@ export function SmallDeviceNav({ data }) {
   const navs = data;
   const bg_drawer = useColorModeValue("colorPalette.500", "colorPalette.900");
 
+  useEffect(() => {
+    const lockOrientation = () => {
+      if (screen.orientation && screen.orientation.lock) {
+        screen.orientation
+          .lock("portrait") // or "landscape"
+          .then(() => alert("Orientation locked"))
+          .catch((err) => alert("Error locking orientation: ", err));
+      }
+    };
+
   return (
     <>
       <Box>
