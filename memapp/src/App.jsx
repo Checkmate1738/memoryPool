@@ -79,11 +79,11 @@ export function isSmallDevice() {
       setIsSmall(false);
     }
 
-    if (screen.orientation && screen.orientation.lock) {
+    if (screen.orientation.type == "portrait") {
       screen.orientation
         .lock("portrait") // or "landscape"
-        .then(() => alert("Orientation locked"))
-        .catch((err) => alert("Error locking orientation: ", err));
+        .then(() => {alert("Orientation locked"); alert(screen.orientation.type)})
+        .catch((err) => {alert("Error locking orientation: ", err); alert(screen.orientation.type)});
     }
   }, []);
 
