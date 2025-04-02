@@ -136,7 +136,8 @@ export function SmallDeviceNav({ data }) {
 function App() {
   const title = "MEMPOOL";
   const bg_color = useColorModeValue("silver", "purple");
-  const values = { title, bg_color };
+  const [credentials,setCredentials] = useState({})
+  const values = { title, bg_color,credentials,setCredentials };
 
   return (
     <>

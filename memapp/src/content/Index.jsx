@@ -1,6 +1,7 @@
 import Home from "@src/content/home/home";
 import Register from "./auth/Register";
 import Login from "./auth/Login";
+import ForgotPassword from "./auth/forgotPassword";
 import Lobby from "./dashboard/lobby";
 import Tasks from "./dashboard/tasks";
 import Notes from "./dashboard/notes";
@@ -11,19 +12,22 @@ import {
   RouterProvider,
   redirect,
 } from "react-router-dom";
+import { useContext } from "react";
+import { STATE } from "@src/App";
 
 function checkAuth() {
   let isAuthenticated = false;
   let isAuthorized = false;
+  const {credentials} = useContext(STATE)
 
   if (
-    sessionStorage.getItem("userId") != null &&
-    sessionStorage.getItem("token") != null
+    credentials.access_token != null &&
+    credentials.token_hash != null
   ) {
     isAuthenticated = true;
   }
 
-  if (sessionStorage.getItem("role") == "member") {
+  if (credentials.token_type == "bearer") {
     isAuthorized = true;
   }
 
@@ -55,6 +59,10 @@ export default function Index() {
         {
           path: "/auth/login",
           Component: Login,
+        },
+        {
+          path: "/auth/forgot-password",
+          Component: ForgotPassword,
         },
       ],
     },
