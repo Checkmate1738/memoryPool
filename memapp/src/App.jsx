@@ -10,10 +10,9 @@ import {
   Portal,
   Button,
 } from "@chakra-ui/react";
-import { Link as Route } from "react-router-dom";
+import { Link as Route, useNavigate } from "react-router-dom";
 //import {}
 import { useColorModeValue, useColorMode } from "./components/ui/color-mode";
-import { redirect } from "react-router-dom";
 import { LuAlignJustify } from "react-icons/lu";
 
 export const STATE = createContext();
@@ -22,6 +21,12 @@ export const NavHeader = ({ nav }) => {
   const { toggleColorMode } = useColorMode();
   const titleColor = useColorModeValue("colorPalette.300", "colorPalette.400");
   const small = isSmallDevice();
+  const navigate = useNavigate();
+
+  if (window.innerHeight < 550) {
+    //logic
+  }
+
   return (
     <>
       <Box
@@ -47,15 +52,10 @@ export const NavHeader = ({ nav }) => {
             cursor={"pointer"}
             onClick={() => {
               toggleColorMode();
+              navigate("/")
             }}
           >
-            <Heading
-              as="h2"
-              display={"flex"}
-              fontSize={"xx-large"}
-              color={"colorPalette.600"}
-              flexWrap={"nowrap"}
-            >
+            <Heading as="h2" fontSize={"xx-large"} color={"colorPalette.600"}>
               {"Memory"}
             </Heading>
             <Text as="p" color={"colorPalette.100"}>

@@ -13,7 +13,8 @@ import {
 import { useColorModeValue } from "@src/components/ui/color-mode";
 import { useForm } from "react-hook-form";
 import { FiEdit3 } from "react-icons/fi";
-import { TbLockPassword } from "react-icons/tb";
+import { CiUser } from "react-icons/ci";
+import { BsUnlock } from "react-icons/bs";
 import { MdOutlineMail } from "react-icons/md";
 import { LuChevronLeft } from "react-icons/lu";
 import axios from "axios";
@@ -81,7 +82,7 @@ function RegisterModel() {
     data["role"] = "member";
     data["sender"] = "browser";
     console.log(data);
-    const url = "http://192.168.100.56:3560/auth/register";
+    const url = "http://localhost/auth/register";
     const header = {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -106,7 +107,7 @@ function RegisterModel() {
           submit(e);
         })}
       >
-        <VStack gapY={2}>
+        <VStack gapY={2} width={72}>
           <Field.Root required invalid={!!errors.fullname}>
             <InputGroup startElement={<FiEdit3 />}>
               <Input
@@ -118,7 +119,7 @@ function RegisterModel() {
             <Field.ErrorText>{errors.fullname}</Field.ErrorText>
           </Field.Root>
           <Field.Root required invalid={!!errors.username}>
-            <InputGroup startElement={<FiEdit3 />}>
+            <InputGroup startElement={<CiUser />}>
               <Input
                 type={"text"}
                 {...register("userName", { require: true })}
@@ -138,17 +139,18 @@ function RegisterModel() {
             <Field.ErrorText>{errors.email}</Field.ErrorText>
           </Field.Root>
           <Field.Root required invalid={!!errors.password}>
-            <InputGroup startElement={<TbLockPassword />}>
+            <InputGroup startElement={<BsUnlock/>}>
               <Input
                 type="password"
                 {...register("password", { require: true })}
                 placeholder="password"
+                width={"100%"}
               />
             </InputGroup>
             <Field.ErrorText>{errors.password}</Field.ErrorText>
           </Field.Root>
           <Field.Root required invalid={!!errors.confirmPassword}>
-            <InputGroup startElement={<TbLockPassword />}>
+            <InputGroup startElement={<BsUnlock/>}>
               <Input
                 type="password"
                 {...register("confirmPassword", { require: true })}
@@ -159,7 +161,8 @@ function RegisterModel() {
           </Field.Root>
           <Input
             type="submit"
-            bgColor={"colorPalette.400"}
+            bgColor={"colorPalette.700"}
+            borderRadius={12}
             textAlign={"center"}
             value={"REGISTER"}
           />

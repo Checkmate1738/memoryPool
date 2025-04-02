@@ -88,7 +88,7 @@ function LoginModel() {
     console.log(data);
     try {
       const res = await axios.post(
-        "http://192.168.100.56:3560/auth/login",
+        "http://localhost/auth/login",
         new URLSearchParams({
           grant_type: data.grant_type,
           username: data.username,

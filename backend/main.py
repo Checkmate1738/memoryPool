@@ -15,6 +15,7 @@ app.include_router(router=dataRouter,prefix="/data")
 
 origins = [
     "http://192.168.100.56:1738",
+    "http://localhost:1738",
 ]
 
 app.add_middleware(CORSMiddleware,
