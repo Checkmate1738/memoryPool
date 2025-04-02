@@ -101,7 +101,7 @@ export function SmallDeviceNav({ data }) {
           .then(() => alert("Orientation locked"))
           .catch((err) => alert("Error locking orientation: ", err));
       }
-    };
+    });
 
   return (
     <>
