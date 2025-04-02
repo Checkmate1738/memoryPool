@@ -79,7 +79,7 @@ export function isSmallDevice() {
       setIsSmall(false);
     }
 
-    if (screen.orientation.type == "portrait") {
+    if (screen.orientation.type == "portrait-primary") {
       screen.orientation
         .lock("portrait") // or "landscape"
         .then(() => {alert("Orientation locked"); alert(screen.orientation.type)})
