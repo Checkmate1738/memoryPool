@@ -78,13 +78,6 @@ export function isSmallDevice() {
     } else {
       setIsSmall(false);
     }
-
-    if (screen.orientation.type == "portrait-primary") {
-      screen.orientation
-        .lock("portrait-primary") // or "landscape"
-        .then(() => {alert("Orientation locked"); alert(screen.orientation.type)})
-        .catch((err) => {alert("Error locking orientation: ", err); alert(screen.orientation.type)});
-    }
   }, []);
 
   return isSmall;
