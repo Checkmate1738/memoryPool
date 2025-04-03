@@ -74,6 +74,7 @@ def getAdmin(token:str=Depends(oauth2_scheme)):
 
 class TaskRequest(BaseModel):
     access_token:str
+    task_id:str
     title:str = "Meet Janel at 15:00hrs"
     description:str = "Our fisrt date, going to Ibiza and enjoy the time we have together"
     is_note:bool=False
@@ -93,6 +94,7 @@ class TaskResponse(BaseModel):
 
 class NoteRequest(BaseModel):
     access_token:str
+    note_id:str
     title:str="The secret to hapinness"
     description:str="Drink water, i.e; H2O"
 
@@ -105,6 +107,7 @@ class NoteResponse(BaseModel):
 
 class ProfileRequest(BaseModel):
     access_token:str
+    user_id:str
     fullname:str="John Doe"
     username:str="Doe123"
     email:str="johndoe@example.com"
@@ -219,15 +222,60 @@ async def newNote(data:NoteRequest,user:dict=Depends(getUser),db:Session=Depends
 
 @router.put("/task")
 async def updTask(data:TaskRequest,user:dict=Depends(getUser),db:Session=Depends(get_db)):
-    return {"message":user}
+    userId = verifyAuth(data,user)
+
+    info = db.query(Tasks).filter(Tasks.id==data.task_id).first()
+
+
+    if not info:
+        return {"error": "Task not found"}
+
+    initial = info
+
+    if info.user_id == userId.get("id"):
+        info.title = data.title
+        info.description = data.description
+        info.status = data.status
+        info.completion = data.completion
+
+    return {"message":"Task updated"}
 
 @router.put("/note")
 async def updNote(data:NoteRequest,user:dict=Depends(getUser),db:Session=Depends(get_db)):
-    return {"message":user}
+    userId = verifyAuth(data,user)
+
+    info = db.query(Notes).filter(Notes.id==data.note_id).first()
+
+
+    if not info:
+        return {"error": "Note not found"}
+
+    initial = info
+
+    if info.user_id == userId.get("id"):
+        info.title = data.title
+        info.description = data.description
+
+    return {"message":"Note updated"}
 
 @router.put("/profile")
 async def updProfile(data:ProfileRequest,user:dict=Depends(getUser),db:Session=Depends(get_db)):
-    return {"message":user}
+    userId = verifyAuth(data,user)
+
+    info = db.query(User).filter(User.id==data.user_id).first()
+
+    if not info:
+        return {"error": "Profile not found"}
+
+    initial = info
+
+    if info.user_id == userId.get("id"):
+        info.fullName = data.fullname
+        info.userName = data.username
+        info.email = data.email
+        info.password = data.password
+    
+    return {"message":"Profile updated"}
 
 # DELETE methods
 
