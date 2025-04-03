@@ -15,7 +15,7 @@ class User(Base):
 class Notes(Base):
     __tablename__ = 'note'
     id = Column(String(16), primary_key=True,unique=True)
-    user_id = Column(ForeignKey('user.id'),nullable=False)
+    user_id = Column(ForeignKey('user.id',ondelete="CASCADE"),nullable=False)
     title = Column(String(30),nullable=False)
     description = Column(String(5000),nullable=False)
     datetime = Column(DateTime,nullable=False)
@@ -23,11 +23,11 @@ class Notes(Base):
 class Tasks(Base):
     __tablename__ = "task"
     id = Column(String(16),nullable=False, primary_key=True,unique=True)
-    user_id = Column(ForeignKey("user.id"), nullable=False)
-    note_id = Column(ForeignKey("note.id"))
+    user_id = Column(ForeignKey("user.id",ondelete="CASCADE"), nullable=False)
+    note_id = Column(ForeignKey("note.id",ondelete="CASCADE"))
     title = Column(String(30),nullable=False)
     description = Column(String(255),nullable=False)
-    status = Column(String(10), nullable=False) #canceled,ongoing,completed,start,paused
+    status = Column(String(10), nullable=False)
     completion = Column(DateTime,nullable=False)
     datetime = Column(DateTime,nullable=False)
 

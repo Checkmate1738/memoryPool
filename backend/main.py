@@ -6,12 +6,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from database.engine import session
 from sqlalchemy.orm import sessionmaker
 from authentication.main import router as authRouter
-from data.main import router as dataRouter
+from dashboard.main import router as dashboardRouter
 
 
 app = FastAPI(title="Memory")
 app.include_router(router=authRouter,prefix="/auth")
-app.include_router(router=dataRouter,prefix="/data")
+app.include_router(router=dashboardRouter,prefix="/dashboard")
 
 origins = [
     "http://192.168.100.56:1738",
@@ -35,11 +35,4 @@ def get_db():
         db.commit()
         db.close()
 
-home = "192.168.100.56"
 
-iphone = "172.20.10.13"
-
-#"""
-#if __name__=="__main__":
-#run("main:app", reload=True,host=home, port=3560)
-#"""

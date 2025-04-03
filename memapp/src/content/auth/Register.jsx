@@ -82,7 +82,7 @@ function RegisterModel() {
     data["role"] = "member";
     data["sender"] = "browser";
     console.log(data);
-    const url = "http://localhost/auth/register";
+    const url = "http://192.168.100.56:3560/auth/register";
     const header = {
       "Content-Type": "application/json",
       Accept: "application/json",

@@ -1,6 +1,7 @@
 import jwt
 from fastapi import HTTPException,status
 from datetime import datetime, timedelta
+import jwt.algorithms
 from passlib.context import CryptContext
 from secrets import token_hex
 
@@ -38,11 +39,12 @@ def verify_user_token(token: str):
     payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
     try:
         
-        userRole = "member"
-        print(f"\n\n\t {payload.role}")
+        userRole = payload["role"]
 
         if userRole != "member":
             raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail="Unauthorized access")
+        if datetime.strptime(payload["expiry"],"%Y-%m-%d %H:%M:%S.%f") <= datetime.now():
+            raise jwt.InvalidTokenError
         return payload
     except (jwt.ExpiredSignatureError,jwt.InvalidTokenError):
         raise HTTPException(status_code=status.HTTP_409_CONFLICT,detail="Invalid or expired token")
@@ -50,10 +52,12 @@ def verify_user_token(token: str):
 def verify_admin_token(token: str):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        userRole = payload.role
+        userRole = payload["role"]
 
         if userRole != "admin":
             raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail="Unauthorized access")
+        if datetime.strptime(payload["expiry"],"%Y-%m-%d %H:%M:%S.%f") <= datetime.now():
+            raise jwt.InvalidTokenError
         return payload
     except (jwt.ExpiredSignatureError,jwt.InvalidTokenError):
         raise HTTPException(status_code=status.HTTP_409_CONFLICT,detail="Invalid or expired token")
