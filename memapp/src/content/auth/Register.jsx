@@ -25,6 +25,8 @@ function RegisterHeader() {
   const navigate = useNavigate();
   const small = isSmallDevice();
 
+  
+
   const back = () => {
     navigate(-1);
   };

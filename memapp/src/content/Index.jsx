@@ -2,7 +2,7 @@ import Home from "@src/content/home/home";
 import Register from "./auth/Register";
 import Login from "./auth/Login";
 import ForgotPassword from "./auth/forgotPassword";
-import Lobby from "./dashboard/lobby";
+import Dashboard from "./dashboard/dashboard";
 import Tasks from "./dashboard/tasks";
 import Notes from "./dashboard/notes";
 import Profile from "./dashboard/profile";
@@ -15,31 +15,23 @@ import {
 import { useContext } from "react";
 import { STATE } from "@src/App";
 
-function checkAuth() {
-  let isAuthenticated = false;
-  let isAuthorized = false;
-  const {credentials} = useContext(STATE)
+function CheckAuth() {
+  const { credentials } = useContext(STATE);
+  console.log(credentials);
 
-  if (
-    credentials.access_token != null &&
-    credentials.token_hash != null
-  ) {
-    isAuthenticated = true;
-  }
-
-  if (credentials.token_type == "bearer") {
-    isAuthorized = true;
-  }
+  const isAuthenticated =
+    credentials?.access_token != null && credentials?.token_hash != null;
+  const isAuthorized = credentials?.token_type === "bearer";
 
   if (!isAuthenticated) {
-    return redirect("/auth/login");
+    throw redirect("/auth/login"); // Correct way to redirect
   }
 
   if (!isAuthorized) {
     throw new Response("Forbidden", { status: 403 });
   }
 
-  return null;
+  return null; // Indicate successful authentication
 }
 
 export default function Index() {
@@ -47,7 +39,7 @@ export default function Index() {
     {
       path: "/",
       Component: Home,
-      errorElement: Error,
+      errorElement: <Error />,
     },
     {
       path: "/auth",
@@ -68,11 +60,11 @@ export default function Index() {
     },
     {
       path: "/dashboard",
-      loader: checkAuth,
+      loader: CheckAuth,
       children: [
         {
           path: "/dashboard/",
-          Component: Lobby,
+          Component: Dashboard,
         },
         {
           path: "/dashboard/notes",

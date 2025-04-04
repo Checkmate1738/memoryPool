@@ -1,8 +1,8 @@
-import { useNavigate,Link as Route } from "react-router-dom";
-import { isSmallDevice,SmallDeviceNav,NavHeader } from "@src/App";
-import { Box,HStack,Link } from "@chakra-ui/react";
+import { Link as Route, useNavigate } from "react-router-dom";
+import { Box, HStack, Link } from "@chakra-ui/react";
+import { isSmallDevice, SmallDeviceNav, NavHeader } from "@src/App";
 
-function ProfileLink () {
+function DashLink() {
   const small = isSmallDevice();
   const navigate = useNavigate();
 
@@ -12,13 +12,13 @@ function ProfileLink () {
         <Box
           width={"100%"}
           onClick={() => {
-            navigate("/dashboard");
+            navigate("/dashboard/notes");
           }}
           display={"flex"}
           padding={2}
           alignItems={"center"}
         >
-          Home
+          Notes
         </Box>,
         <Box
           width={"100%"}
@@ -34,13 +34,13 @@ function ProfileLink () {
         <Box
           width={"100%"}
           onClick={() => {
-            navigate("/dashboard/notes");
+            navigate("/dashboard/profile");
           }}
           display={"flex"}
           padding={2}
           alignItems={"center"}
         >
-          Notes
+          Profile
         </Box>,
       ]}
     />
@@ -52,17 +52,17 @@ function ProfileLink () {
       <Link as={Route} to="/dashboard/tasks">
         Tasks
       </Link>
-      <Link as={Route} to={"/dashboard"}>
-        Home
+      <Link as={Route} to="/dashboard/profile">
+        Profile
       </Link>
     </HStack>
   );
 }
 
-export default function Profile() {
-    return (
-        <>
-        <NavHeader nav={<ProfileLink/>}/>
-        </>
-    )
+export default function Dashboard() {
+  return (
+    <>
+      <NavHeader nav={<DashLink />} />
+    </>
+  );
 }

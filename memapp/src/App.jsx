@@ -11,7 +11,6 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { Link as Route, useNavigate } from "react-router-dom";
-//import {}
 import { useColorModeValue, useColorMode } from "./components/ui/color-mode";
 import { LuAlignJustify } from "react-icons/lu";
 
@@ -51,7 +50,6 @@ export const NavHeader = ({ nav }) => {
             paddingY={1}
             cursor={"pointer"}
             onClick={() => {
-              toggleColorMode();
               navigate("/")
             }}
           >
@@ -59,7 +57,7 @@ export const NavHeader = ({ nav }) => {
               {"Memory"}
             </Heading>
             <Text as="p" color={"colorPalette.100"}>
-              {"store tasks and notes"}
+              {"save tasks and notes"}
             </Text>
           </Box>
           <Box alignSelf={"center"}>{nav}</Box>
@@ -68,6 +66,15 @@ export const NavHeader = ({ nav }) => {
     </>
   );
 };
+
+/*
+export async function encryptPassword(plainText,salt) {
+  const encrypted = await hash(plainText,salt)
+
+  console.log(encrypted)
+  return encrypted
+}
+*/
 
 export function isSmallDevice() {
   const [isSmall, setIsSmall] = useState(false);
@@ -116,6 +123,7 @@ export function SmallDeviceNav({ data }) {
                       key={index}
                       marginTop={2}
                       borderRadius={8}
+                      cursor={"pointer"}
                     >
                       {item}
                     </Box>
@@ -138,6 +146,15 @@ function App() {
   const bg_color = useColorModeValue("silver", "purple");
   const [credentials,setCredentials] = useState({})
   const values = { title, bg_color,credentials,setCredentials };
+  const {colorMode,toggleColorMode} = useColorMode()
+
+  useEffect(
+    ()=>{
+      if (colorMode === "light"){
+        toggleColorMode()
+      }
+    },[]
+  )
 
   return (
     <>

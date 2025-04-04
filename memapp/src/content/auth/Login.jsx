@@ -77,7 +77,7 @@ function LoginModel() {
     formState: { errors },
     reset,
   } = useForm();
-  const { setCredentials } = useContext(STATE);
+  const {setCredentials} = useContext(STATE)
   const navigate = useNavigate();
 
   const submit = async (data) => {
@@ -104,7 +104,7 @@ function LoginModel() {
           },
         }
       );
-      setCredentials(res.data);
+      setCredentials(res.data)//localStorage.setItem("credentials",res.data);
       console.log(res.data);
       navigate("/dashboard");
     } catch (error) {
