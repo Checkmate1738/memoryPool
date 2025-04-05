@@ -60,7 +60,7 @@ export default function Index() {
     },
     {
       path: "/dashboard",
-      loader: CheckAuth,
+      //loader: CheckAuth,
       children: [
         {
           path: "/dashboard/",
