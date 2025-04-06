@@ -23,13 +23,13 @@ function TasksLink () {
         <Box
           width={"100%"}
           onClick={() => {
-            navigate("/dashboard/tasks");
+            navigate("/dashboard/notes");
           }}
           display={"flex"}
           padding={2}
           alignItems={"center"}
         >
-          Tasks
+          Notes
         </Box>,
         <Box
           width={"100%"}
