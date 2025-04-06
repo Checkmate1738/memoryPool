@@ -156,7 +156,7 @@ function RegisterModel() {
               <Input
                 type="password"
                 {...register("confirmPassword", { require: true })}
-                placeholder="confirmPassword"
+                placeholder="confirm password"
               />
             </InputGroup>
             <Field.ErrorText>{errors.confirmPassword}</Field.ErrorText>
