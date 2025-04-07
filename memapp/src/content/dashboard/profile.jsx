@@ -73,7 +73,11 @@ function ProfileLink() {
 }
 
 function EditProfile({ trigger, profile, setProfile }) {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   return (
     <form onSubmit={handleSubmit((e) => console.log(e))}>
       <Dialog.Root placement={"center"}>
@@ -86,7 +90,16 @@ function EditProfile({ trigger, profile, setProfile }) {
               <Dialog.Header>
                 <Dialog.Title>Edit Profile</Dialog.Title>
               </Dialog.Header>
-              <Dialog.Body></Dialog.Body>
+              <Dialog.Body>
+                {Object.entries(profile).map(([name, values]) => (
+                  <Field.Root key={name}>
+                    <InputGroup startAddon={name}>
+                      <Input defaultValue={values} {...register(name)} />
+                    </InputGroup>
+                    <Field.ErrorText>{errors.name}</Field.ErrorText>
+                  </Field.Root>
+                ))}
+              </Dialog.Body>
               <Dialog.Footer>
                 <Dialog.ActionTrigger>
                   <Input
@@ -119,67 +132,58 @@ function ProfileModel() {
   });
 
   return (
-    <form
-      onSubmit={handleSubmit((e) => {
-        console.log(e);
-        setProfileData(e);
-        setIsDisabled(true);
-        setIsEdit(false);
-      })}
-    >
-      <VStack width={72}>
-        {Object.entries(profileData).map(([key, value]) => {
-          if (key === "tasks" || key === "notes") {
-            return (
-              <Field.Root key={key}>
-                <InputGroup startAddon={key}>
-                  <Input textAlign={"center"} value={value} readOnly />
-                </InputGroup>
-              </Field.Root>
-            );
-          }
+    <VStack width={72}>
+      {Object.entries(profileData).map(([key, value]) => {
+        if (key === "tasks" || key === "notes") {
           return (
             <Field.Root key={key}>
               <InputGroup startAddon={key}>
-                {isDisabled ? (
-                  <Input value={value} readOnly textAlign={"center"} />
-                ) : (
-                  <Input
-                    placeholder={value}
-                    {...register(key, { required: true })}
-                  />
-                )}
+                <Input textAlign={"center"} value={value} readOnly />
               </InputGroup>
             </Field.Root>
           );
-        })}
-        <HStack width={"inherit"}>
-          <EditProfile
-            trigger={
-              <Input
-                value={"Edit"}
-                type={"button"}
-                cursor={"pointer"}
-                width={36}
-                textAlign={"center"}
-              />
-            }
-            profile={profileData}
-            setProfile={setProfileData}
-          />
-          <Input
-            type="button"
-            textAlign={"center"}
-            cursor={"pointer"}
-            value={"Log out"}
-            bgColor={"colorpallette.800"}
-            onClick={() => {
-              console.log("logged out");
-            }}
-          />
-        </HStack>
-      </VStack>
-    </form>
+        }
+        return (
+          <Field.Root key={key}>
+            <InputGroup startAddon={key}>
+              {isDisabled ? (
+                <Input value={value} readOnly textAlign={"center"} />
+              ) : (
+                <Input
+                  placeholder={value}
+                  {...register(key, { required: true })}
+                />
+              )}
+            </InputGroup>
+          </Field.Root>
+        );
+      })}
+      <HStack width={"inherit"}>
+        <EditProfile
+          trigger={
+            <Input
+              value={"Edit"}
+              type={"button"}
+              cursor={"pointer"}
+              width={36}
+              textAlign={"center"}
+            />
+          }
+          profile={profileData}
+          setProfile={setProfileData}
+        />
+        <Input
+          type="button"
+          textAlign={"center"}
+          cursor={"pointer"}
+          value={"Log out"}
+          bgColor={"colorpallette.800"}
+          onClick={() => {
+            console.log("logged out");
+          }}
+        />
+      </HStack>
+    </VStack>
   );
 }
 
