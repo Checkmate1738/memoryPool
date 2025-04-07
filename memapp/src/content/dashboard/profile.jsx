@@ -8,10 +8,12 @@ import {
   Input,
   InputGroup,
   Link,
-  Text,
+  Avatar,
   VStack,
   Dialog,
   Portal,
+  Heading,
+  Text
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 
@@ -79,41 +81,38 @@ function EditProfile({ trigger, profile, setProfile }) {
     formState: { errors },
   } = useForm();
 
-  let showPass = false
+  let showPass = false;
 
   return (
-    <form onSubmit={handleSubmit((e) => (console.log(e)))}>
-      <Dialog.Root placement={"center"}>
-        <Dialog.Trigger>{trigger}</Dialog.Trigger>
-        <Portal>
-          <Dialog.Backdrop />
-          <Dialog.Positioner>
-            <Dialog.Content>
-              <Dialog.CloseTrigger />
+    <Dialog.Root placement={"center"}>
+      <Dialog.Trigger>{trigger}</Dialog.Trigger>
+      <Portal>
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.CloseTrigger />
+            <form onSubmit={handleSubmit((e) =>( console.log(e), setProfile(e)))}>
               <Dialog.Header>
                 <Dialog.Title>Edit Profile</Dialog.Title>
               </Dialog.Header>
               <Dialog.Body>
                 {Object.entries(profile).map(([name, values]) => {
-                  
-                  if (name === "tasks" || name === "notes") {
-                    return (
-                      <Field.Root key={name}>
-                        <InputGroup startAddon={name}>
-                          <Input value={values} readOnly />
-                        </InputGroup>
-                        <Field.ErrorText>{errors.name}</Field.ErrorText>
-                      </Field.Root>
-                    );
-                  }
-
                   return (
-                  <Field.Root key={name}>
-                    <InputGroup startAddon={name} >
-                      <Input type={name === "password" || showPass? "password" : "text"} defaultValue={values} {...register(name)} />
-                    </InputGroup>
-                    <Field.ErrorText>{errors.name}</Field.ErrorText>
-                  </Field.Root>)
+                    <Field.Root key={name}>
+                      <InputGroup startAddon={name} startAddonProps={{width:24}}>
+                        <Input
+                          type={
+                            name === "password" || showPass
+                              ? "password"
+                              : "text"
+                          }
+                          defaultValue={values}
+                          {...register(name)}
+                        />
+                      </InputGroup>
+                      <Field.ErrorText>{errors.name}</Field.ErrorText>
+                    </Field.Root>
+                  );
                 })}
               </Dialog.Body>
               <Dialog.Footer>
@@ -124,16 +123,16 @@ function EditProfile({ trigger, profile, setProfile }) {
                     width={28}
                     cursor={"pointer"}
                     bgColor={"green.700"}
-                    _active={{backgroundColor:"green.600"}}
+                    _active={{ backgroundColor: "green.600" }}
                     textAlign={"center"}
                   />
                 </Dialog.ActionTrigger>
               </Dialog.Footer>
-            </Dialog.Content>
-          </Dialog.Positioner>
-        </Portal>
-      </Dialog.Root>
-    </form>
+            </form>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.Root>
   );
 }
 
@@ -143,57 +142,48 @@ function ProfileModel() {
     username: "Doe123",
     email: "johndoe@example.com",
     password: "aki brayoo",
-    tasks: 5,
-    notes: 2,
   });
-
   return (
-    <VStack width={72}>
-      {Object.entries(profileData).map(([key, value]) => {
-        if (key === "tasks" || key === "notes") {
-          return (
-            <Field.Root key={key}>
-              <InputGroup startAddon={key}>
-                <Input textAlign={"center"} value={value} readOnly />
-              </InputGroup>
-            </Field.Root>
-          );
-        }
-        return (
-          <Field.Root key={key}>
-            <InputGroup startAddon={key}>
-              <Input value={value} readOnly textAlign={"center"} />
+    <Box>
+      <VStack width={72}>
+        <Avatar.Root size={"2xl"}>
+          <Avatar.Image src="" />
+        </Avatar.Root>
+        {Object.entries(profileData).map(([key, value]) => (
+          <Field.Root width={"inherit"} key={key}>
+            <InputGroup startAddon={key} startAddonProps={{ width: 24 }}>
+              <Input variant={"flushed"} value={value} readOnly textAlign={"center"} />
             </InputGroup>
           </Field.Root>
-        );
-      })}
-      <HStack width={"inherit"}>
-        <EditProfile
-          trigger={
-            <Input
-              value={"Edit"}
-              type={"button"}
-              cursor={"pointer"}
-              width={36}
-              textAlign={"center"}
-            />
-          }
-          profile={profileData}
-          setProfile={setProfileData}
-        />
-        <Input
-          type="button"
-          textAlign={"center"}
-          cursor={"pointer"}
-          value={"Log out"}
-          bgColor={"red.700"}
-          _active={{backgroundColor:"red.600"}}
-          onClick={() => {
-            console.log("logged out");
-          }}
-        />
-      </HStack>
-    </VStack>
+        ))}
+        <HStack width={"inherit"} paddingTop={4}>
+          <EditProfile
+            trigger={
+              <Input
+                value={"Edit"}
+                type={"button"}
+                cursor={"pointer"}
+                width={36}
+                textAlign={"center"}
+              />
+            }
+            profile={profileData}
+            setProfile={setProfileData}
+          />
+          <Input
+            type="button"
+            textAlign={"center"}
+            cursor={"pointer"}
+            value={"Log out"}
+            bgColor={"red.700"}
+            _active={{ backgroundColor: "red.600" }}
+            onClick={() => {
+              console.log("logged out");
+            }}
+          />
+        </HStack>
+      </VStack>
+    </Box>
   );
 }
 
