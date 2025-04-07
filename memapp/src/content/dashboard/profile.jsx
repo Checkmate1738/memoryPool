@@ -150,7 +150,7 @@ function ProfileModel() {
 
   return (
     <Box>
-      <VStack width={"96"}>
+      <VStack width={ window.innerWidth >= 1000 ?"96":"72"}>
         <Box
           boxSize={36}
           display={"flex"}
