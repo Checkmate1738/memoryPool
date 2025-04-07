@@ -80,7 +80,10 @@ function EditProfile({trigger,profile,setProfile}) {
        <Dialog.Backdrop/>
        <Dialog.Positioner>
          <Dialog.Content>
-         <Dialog.CloseButton />
+         <Dialog.CloseTrigger />
+          <Dialog.Header></Dialog.Header>
+          <Dialog.Body></Dialog.Body>
+          <Dialog.ActionTrigger></Dialog.ActionTrigger>
          </Dialog.Content>
        </Dialog.Positioner>
        </Portal>
