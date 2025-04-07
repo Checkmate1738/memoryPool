@@ -142,6 +142,7 @@ function ProfileModel() {
             textAlign={"center"}
             cursor={"pointer"}
             value={"Log out"}
+            bgColor={"colorpallette.800"}
             onClick={() => {
               console.log("logged out");
             }}
