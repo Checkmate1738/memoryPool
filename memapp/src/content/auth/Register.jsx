@@ -25,8 +25,6 @@ function RegisterHeader() {
   const navigate = useNavigate();
   const small = isSmallDevice();
 
-  
-
   const back = () => {
     navigate(-1);
   };
@@ -90,10 +88,10 @@ function RegisterModel() {
       Accept: "application/json",
     };
     try {
-      const feedback = await axios.post(url,data,{headers: header});
-      console.log(feedback.data)
+      const feedback = await axios.post(url, data, { headers: header });
+      console.log(feedback.data);
       if (feedback.data.message === "success") {
-        navigate("/auth/login")
+        navigate("/auth/login");
       }
     } catch (error) {
       console.log(error);
@@ -141,7 +139,7 @@ function RegisterModel() {
             <Field.ErrorText>{errors.email}</Field.ErrorText>
           </Field.Root>
           <Field.Root required invalid={!!errors.password}>
-            <InputGroup startElement={<BsUnlock/>}>
+            <InputGroup startElement={<BsUnlock />}>
               <Input
                 type="password"
                 {...register("password", { require: true })}
@@ -152,7 +150,7 @@ function RegisterModel() {
             <Field.ErrorText>{errors.password}</Field.ErrorText>
           </Field.Root>
           <Field.Root required invalid={!!errors.confirmPassword}>
-            <InputGroup startElement={<BsUnlock/>}>
+            <InputGroup startElement={<BsUnlock />}>
               <Input
                 type="password"
                 {...register("confirmPassword", { require: true })}
@@ -182,10 +180,12 @@ export default function Register() {
     <>
       <NavHeader nav={<RegisterHeader />} />
       <Box
+        paddingTop={4}
+        position={"absolute"}
+        top={24}
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
-        height={"100vh"}
         width={"100vw"}
       >
         <RegisterModel />

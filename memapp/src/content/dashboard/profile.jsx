@@ -1,4 +1,4 @@
-import { useNavigate, Link as Route,useLoaderData } from "react-router-dom";
+import { useNavigate, Link as Route,useLoaderData,useRevalidator } from "react-router-dom";
 import { useState } from "react";
 import { isSmallDevice, SmallDeviceNav, NavHeader } from "@src/App";
 import {
@@ -75,7 +75,8 @@ function ProfileLink() {
   );
 }
 
-function EditProfile({ trigger, profile, setProfile }) {
+function EditProfile({ trigger,profile }) {
+  const {revalidate} = useRevalidator()
   const {
     register,
     handleSubmit,
@@ -91,7 +92,7 @@ function EditProfile({ trigger, profile, setProfile }) {
           <Dialog.Content>
             <Dialog.CloseTrigger />
             <form
-              onSubmit={handleSubmit((e) => (console.log(e), setProfile(e)))}
+              onSubmit={handleSubmit((e)=>{revalidate()})}
             >
               <Dialog.Header>
                 <Dialog.Title>Edit Profile</Dialog.Title>
@@ -136,16 +137,20 @@ function EditProfile({ trigger, profile, setProfile }) {
 }
 
 function ProfileModel() {
-  const [profileData, setProfileData] = useState({
+  /*const [profileData, setProfileData] = useState({
     fullname: "John Doe",
     username: "Doe123",
     email: "johndoe@example.com",
     password: "aki brayoo",
-  });
+  });*/
+
+  const profileData = useLoaderData()
+
+  console.log(profileData)
 
   return (
     <Box>
-      <VStack width={72}>
+      <VStack width={"96"}>
         <Box
           boxSize={36}
           display={"flex"}
@@ -160,9 +165,9 @@ function ProfileModel() {
             </Avatar.Icon>
           </Avatar.Root>
           <Box>
-            <Heading>{profileData.fullname}</Heading>
+            <Heading>{profileData.id}</Heading>
             <Text width={"inherit"} textAlign={"center"}>
-              {profileData.username}
+              {profileData.userName}
             </Text>
           </Box>
         </Box>
@@ -191,7 +196,6 @@ function ProfileModel() {
               />
             }
             profile={profileData}
-            setProfile={setProfileData}
           />
           <Input
             type="button"
@@ -215,6 +219,8 @@ export default function Profile() {
     <>
       <NavHeader nav={<ProfileLink />} />
       <Box
+      position={"absolute"}
+      top={24}
         minHeight={"100vh"}
         width={"100vw"}
         display={"flex"}

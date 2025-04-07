@@ -14,6 +14,7 @@ import {
 } from "react-router-dom";
 import { useContext } from "react";
 import { STATE } from "@src/App";
+import axios from "axios";
 
 function CheckAuth() {
   const { credentials } = useContext(STATE);
@@ -35,6 +36,8 @@ function CheckAuth() {
 }
 
 export default function Index() {
+  const {credentials} = useContext(STATE)
+
   const paths = createBrowserRouter([
     {
       path: "/",
@@ -60,7 +63,7 @@ export default function Index() {
     },
     {
       path: "/dashboard",
-      //loader: CheckAuth,
+      loader: CheckAuth,
       children: [
         {
           path: "/dashboard/",
@@ -77,6 +80,11 @@ export default function Index() {
         {
           path: "/dashboard/profile",
           Component: Profile,
+          loader:async () => {
+            let res = await axios.get("http://192.168.100.56:3560/dashboard/profile",{headers:{Authorization:`Bearer ${credentials.access_token}`}})
+
+            return res.data.message
+          }
         },
       ],
     },

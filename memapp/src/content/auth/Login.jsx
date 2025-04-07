@@ -185,10 +185,10 @@ export default function Login() {
       <NavHeader nav={<LoginHeader />} />
       <Box
         position={"absolute"}
+        top={24}
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
-        height={"100vh"}
         width={"100vw"}
       >
         <LoginModel />
