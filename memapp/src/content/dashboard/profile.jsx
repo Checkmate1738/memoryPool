@@ -107,7 +107,7 @@ function ProfileModel() {
             <Field.Root key={key}>
               <InputGroup startAddon={key}>
                 {isDisabled ? (
-                  <Input value={value} readOnly />
+                  <Input value={value} readOnly textAlign={"center"} />
                 ) : (
                   <Input
                     placeholder={value} {...register(key, { required: true })}
