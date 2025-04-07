@@ -78,8 +78,11 @@ function EditProfile({ trigger, profile, setProfile }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  let showPass = false
+
   return (
-    <form onSubmit={handleSubmit((e) => console.log(e))}>
+    <form onSubmit={handleSubmit((e) => (console.log(e)))}>
       <Dialog.Root placement={"center"}>
         <Dialog.Trigger>{trigger}</Dialog.Trigger>
         <Portal>
@@ -91,21 +94,37 @@ function EditProfile({ trigger, profile, setProfile }) {
                 <Dialog.Title>Edit Profile</Dialog.Title>
               </Dialog.Header>
               <Dialog.Body>
-                {Object.entries(profile).map(([name, values]) => (
+                {Object.entries(profile).map(([name, values]) => {
+                  
+                  if (name === "tasks" || name === "notes") {
+                    return (
+                      <Field.Root key={name}>
+                        <InputGroup startAddon={name}>
+                          <Input value={values} readOnly />
+                        </InputGroup>
+                        <Field.ErrorText>{errors.name}</Field.ErrorText>
+                      </Field.Root>
+                    );
+                  }
+
+                  return (
                   <Field.Root key={name}>
-                    <InputGroup startAddon={name}>
-                      <Input defaultValue={values} {...register(name)} />
+                    <InputGroup startAddon={name} >
+                      <Input type={name === "password" || showPass? "password" : "text"} defaultValue={values} {...register(name)} />
                     </InputGroup>
                     <Field.ErrorText>{errors.name}</Field.ErrorText>
-                  </Field.Root>
-                ))}
+                  </Field.Root>)
+                })}
               </Dialog.Body>
               <Dialog.Footer>
                 <Dialog.ActionTrigger>
                   <Input
                     value={"Submit"}
                     type={"submit"}
+                    width={28}
                     cursor={"pointer"}
+                    bgColor={"green.700"}
+                    _active={{backgroundColor:"green.600"}}
                     textAlign={"center"}
                   />
                 </Dialog.ActionTrigger>
@@ -119,14 +138,11 @@ function EditProfile({ trigger, profile, setProfile }) {
 }
 
 function ProfileModel() {
-  const [isDisabled, setIsDisabled] = useState(true);
-  const [isEdit, setIsEdit] = useState(false);
-  const { register, handleSubmit } = useForm();
   const [profileData, setProfileData] = useState({
     fullname: "John Doe",
     username: "Doe123",
     email: "johndoe@example.com",
-    password: "*******",
+    password: "aki brayoo",
     tasks: 5,
     notes: 2,
   });
@@ -146,14 +162,7 @@ function ProfileModel() {
         return (
           <Field.Root key={key}>
             <InputGroup startAddon={key}>
-              {isDisabled ? (
-                <Input value={value} readOnly textAlign={"center"} />
-              ) : (
-                <Input
-                  placeholder={value}
-                  {...register(key, { required: true })}
-                />
-              )}
+              <Input value={value} readOnly textAlign={"center"} />
             </InputGroup>
           </Field.Root>
         );
@@ -177,7 +186,8 @@ function ProfileModel() {
           textAlign={"center"}
           cursor={"pointer"}
           value={"Log out"}
-          bgColor={"colorpallette.800"}
+          bgColor={"red.700"}
+          _active={{backgroundColor:"red.600"}}
           onClick={() => {
             console.log("logged out");
           }}
