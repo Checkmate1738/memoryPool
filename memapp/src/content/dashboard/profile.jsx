@@ -81,7 +81,9 @@ function EditProfile({trigger,profile,setProfile}) {
        <Dialog.Positioner>
          <Dialog.Content>
          <Dialog.CloseTrigger />
-          <Dialog.Header></Dialog.Header>
+          <Dialog.Header>
+            <Dialog.Title>Edit Profile</Dialog.Title>
+          </Dialog.Header>
           <Dialog.Body></Dialog.Body>
           <Dialog.ActionTrigger></Dialog.ActionTrigger>
          </Dialog.Content>
@@ -151,6 +153,7 @@ function ProfileModel() {
               value={"Edit"}
               type={"button"}
               cursor={"pointer"}
+                                     width={36}
               textAlign={"center"}
             />)} profile={profileData} setProfile={setProfileData} />
           )}
