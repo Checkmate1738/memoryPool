@@ -8,12 +8,12 @@ import {
   Input,
   InputGroup,
   Link,
-  Icon,
   VStack,
   Dialog,
   Portal,
   Heading,
   Text,
+  Avatar,
 } from "@chakra-ui/react";
 import { LuUser } from "react-icons/lu";
 import { useForm } from "react-hook-form";
@@ -152,10 +152,23 @@ function ProfileModel() {
   return (
     <Box>
       <VStack width={72}>
-        <Box>
-          <Icon size={"2xl"} color={"green.400"} boxSize={"96px"}>
-            <LuUser />
-          </Icon>
+        <Box
+          boxSize={36}
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          flexDirection={"column"}
+          margin={4}
+        >
+          <Avatar.Root boxSize={28}>
+            <Avatar.Icon color={"green.300"} boxSize={24}>
+              {<LuUser />}
+            </Avatar.Icon>
+          </Avatar.Root>
+          <Box>
+            <Heading>{profileData.fullname}</Heading>
+            <Text width={"inherit"} textAlign={"center"}>{profileData.username}</Text>
+          </Box>
         </Box>
         {Object.entries(profileData).map(([key, value]) => (
           <Field.Root width={"inherit"} key={key}>
