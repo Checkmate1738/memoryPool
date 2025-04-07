@@ -150,10 +150,6 @@ function ProfileModel() {
             <EditProfile trigger={(<Input
               value={"Edit"}
               type={"button"}
-              onClick={() => {
-                setIsDisabled(false);
-                setIsEdit(true);
-              }}
               cursor={"pointer"}
               textAlign={"center"}
             />)} profile={profileData} setProfile={setProfileData} />
