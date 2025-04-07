@@ -8,13 +8,14 @@ import {
   Input,
   InputGroup,
   Link,
-  Avatar,
+  Icon,
   VStack,
   Dialog,
   Portal,
   Heading,
-  Text
+  Text,
 } from "@chakra-ui/react";
+import { LuUser } from "react-icons/lu";
 import { useForm } from "react-hook-form";
 
 function ProfileLink() {
@@ -91,7 +92,9 @@ function EditProfile({ trigger, profile, setProfile }) {
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.CloseTrigger />
-            <form onSubmit={handleSubmit((e) =>( console.log(e), setProfile(e)))}>
+            <form
+              onSubmit={handleSubmit((e) => (console.log(e), setProfile(e)))}
+            >
               <Dialog.Header>
                 <Dialog.Title>Edit Profile</Dialog.Title>
               </Dialog.Header>
@@ -99,7 +102,10 @@ function EditProfile({ trigger, profile, setProfile }) {
                 {Object.entries(profile).map(([name, values]) => {
                   return (
                     <Field.Root key={name}>
-                      <InputGroup startAddon={name} startAddonProps={{width:24}}>
+                      <InputGroup
+                        startAddon={name}
+                        startAddonProps={{ width: 24 }}
+                      >
                         <Input
                           type={
                             name === "password" || showPass
@@ -146,13 +152,20 @@ function ProfileModel() {
   return (
     <Box>
       <VStack width={72}>
-        <Avatar.Root size={"2xl"}>
-          <Avatar.Image src="" />
-        </Avatar.Root>
+        <Box>
+          <Icon size={"2xl"} color={"green.400"} boxSize={"96px"}>
+            <LuUser />
+          </Icon>
+        </Box>
         {Object.entries(profileData).map(([key, value]) => (
           <Field.Root width={"inherit"} key={key}>
             <InputGroup startAddon={key} startAddonProps={{ width: 24 }}>
-              <Input variant={"flushed"} value={value} readOnly textAlign={"center"} />
+              <Input
+                variant={"flushed"}
+                value={value}
+                readOnly
+                textAlign={"center"}
+              />
             </InputGroup>
           </Field.Root>
         ))}
