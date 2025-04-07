@@ -6,7 +6,7 @@ import jsconfig from "vite-jsconfig-paths";
 export default defineConfig({
   plugins: [react(), jsconfig()],
   server: {
-    host: "172.31.169.68", //"localhost",//"192.168.100.56",
+    host: "192.168.100.56", //"172.31.169.68", //"localhost",//"192.168.100.56",
     port: 1738,
   },
 });

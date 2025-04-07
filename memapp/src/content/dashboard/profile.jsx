@@ -75,7 +75,7 @@ function ProfileLink() {
 function EditProfile({trigger,profile,setProfile}) {
   const { register, handleSubmit } = useForm();
      return (
-       <form onSubmit={handleSubmit((e)=>(console.log(e)))>
+       <form onSubmit={handleSubmit((e)=>(console.log(e)))}>
        <Dialog.Root placement={"center"}>
        <Dialog.Trigger>{trigger}</Dialog.Trigger>
        <Portal>
