@@ -1,4 +1,4 @@
-import { useNavigate, Link as Route } from "react-router-dom";
+import { useNavigate, Link as Route,useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import { isSmallDevice, SmallDeviceNav, NavHeader } from "@src/App";
 import {
@@ -82,8 +82,6 @@ function EditProfile({ trigger, profile, setProfile }) {
     formState: { errors },
   } = useForm();
 
-  let showPass = false;
-
   return (
     <Dialog.Root placement={"center"}>
       <Dialog.Trigger>{trigger}</Dialog.Trigger>
@@ -107,11 +105,6 @@ function EditProfile({ trigger, profile, setProfile }) {
                         startAddonProps={{ width: 24 }}
                       >
                         <Input
-                          type={
-                            name === "password" || showPass
-                              ? "password"
-                              : "text"
-                          }
                           defaultValue={values}
                           {...register(name)}
                         />
@@ -149,6 +142,7 @@ function ProfileModel() {
     email: "johndoe@example.com",
     password: "aki brayoo",
   });
+
   return (
     <Box>
       <VStack width={72}>
@@ -167,7 +161,9 @@ function ProfileModel() {
           </Avatar.Root>
           <Box>
             <Heading>{profileData.fullname}</Heading>
-            <Text width={"inherit"} textAlign={"center"}>{profileData.username}</Text>
+            <Text width={"inherit"} textAlign={"center"}>
+              {profileData.username}
+            </Text>
           </Box>
         </Box>
         {Object.entries(profileData).map(([key, value]) => (
@@ -176,6 +172,7 @@ function ProfileModel() {
               <Input
                 variant={"flushed"}
                 value={value}
+                type={key === "password" ? "password" : "text"}
                 readOnly
                 textAlign={"center"}
               />
