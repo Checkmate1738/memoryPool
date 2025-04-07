@@ -10,6 +10,8 @@ import {
   Link,
   Text,
   VStack,
+  Dialog,
+  Portal
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 
@@ -70,6 +72,22 @@ function ProfileLink() {
   );
 }
 
+function EditProfile({trigger,profile,setProfile}) {
+     return (
+       <Dialog.Root>
+       <Dialog.Trigger>{trigger}</Dialog.Trigger>
+       <Portal>
+       <Dialog.Backdrop/>
+       <Dialog.Positioner>
+         <Dialog.Content>
+         <Dialog.CloseButton />
+         </Dialog.Content>
+       </Dialog.Positioner>
+       </Portal>
+       </Dialog.Root>
+     )
+}
+
 function ProfileModel() {
   const [isDisabled, setIsDisabled] = useState(true);
   const [isEdit, setIsEdit] = useState(false);
@@ -126,7 +144,7 @@ function ProfileModel() {
               textAlign={"center"}
             />
           ) : (
-            <Input
+            <EditProfile trigger={(<Input
               value={"Edit"}
               type={"button"}
               onClick={() => {
@@ -135,7 +153,7 @@ function ProfileModel() {
               }}
               cursor={"pointer"}
               textAlign={"center"}
-            />
+            />)} profile={profileData} setProfile={setProfileData} />
           )}
           <Input
             type="button"
