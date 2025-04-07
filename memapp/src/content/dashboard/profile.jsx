@@ -11,7 +11,7 @@ import {
   Text,
   VStack,
   Dialog,
-  Portal
+  Portal,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 
@@ -72,37 +72,37 @@ function ProfileLink() {
   );
 }
 
-function EditProfile({trigger,profile,setProfile}) {
+function EditProfile({ trigger, profile, setProfile }) {
   const { register, handleSubmit } = useForm();
-     return (
-       <form onSubmit={handleSubmit((e)=>(console.log(e)))}>
-       <Dialog.Root placement={"center"}>
-       <Dialog.Trigger>{trigger}</Dialog.Trigger>
-       <Portal>
-       <Dialog.Backdrop/>
-       <Dialog.Positioner>
-         <Dialog.Content>
-         <Dialog.CloseTrigger />
-          <Dialog.Header>
-            <Dialog.Title>Edit Profile</Dialog.Title>
-          </Dialog.Header>
-          <Dialog.Body></Dialog.Body>
-           <Dialog.Footer>
-           <Dialog.ActionTrigger>
-              <Input
-              value={"Submit"}
-              type={"submit"}
-              cursor={"pointer"}
-              textAlign={"center"}
-            />
-          </Dialog.ActionTrigger>
-           </Dialog.Footer>
-         </Dialog.Content>
-       </Dialog.Positioner>
-       </Portal>
-       </Dialog.Root>
-         </form>
-     )
+  return (
+    <form onSubmit={handleSubmit((e) => console.log(e))}>
+      <Dialog.Root placement={"center"}>
+        <Dialog.Trigger>{trigger}</Dialog.Trigger>
+        <Portal>
+          <Dialog.Backdrop />
+          <Dialog.Positioner>
+            <Dialog.Content>
+              <Dialog.CloseTrigger />
+              <Dialog.Header>
+                <Dialog.Title>Edit Profile</Dialog.Title>
+              </Dialog.Header>
+              <Dialog.Body></Dialog.Body>
+              <Dialog.Footer>
+                <Dialog.ActionTrigger>
+                  <Input
+                    value={"Submit"}
+                    type={"submit"}
+                    cursor={"pointer"}
+                    textAlign={"center"}
+                  />
+                </Dialog.ActionTrigger>
+              </Dialog.Footer>
+            </Dialog.Content>
+          </Dialog.Positioner>
+        </Portal>
+      </Dialog.Root>
+    </form>
+  );
 }
 
 function ProfileModel() {
@@ -145,7 +145,8 @@ function ProfileModel() {
                   <Input value={value} readOnly textAlign={"center"} />
                 ) : (
                   <Input
-                    placeholder={value} {...register(key, { required: true })}
+                    placeholder={value}
+                    {...register(key, { required: true })}
                   />
                 )}
               </InputGroup>
@@ -153,14 +154,19 @@ function ProfileModel() {
           );
         })}
         <HStack width={"inherit"}>
-            <EditProfile trigger={(<Input
-              value={"Edit"}
-              type={"button"}
-              cursor={"pointer"}
-                                     width={36}
-              textAlign={"center"}
-            />)} profile={profileData} setProfile={setProfileData} />
-          )}
+          <EditProfile
+            trigger={
+              <Input
+                value={"Edit"}
+                type={"button"}
+                cursor={"pointer"}
+                width={36}
+                textAlign={"center"}
+              />
+            }
+            profile={profileData}
+            setProfile={setProfileData}
+          />
           <Input
             type="button"
             textAlign={"center"}
