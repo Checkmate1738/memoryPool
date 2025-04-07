@@ -73,7 +73,9 @@ function ProfileLink() {
 }
 
 function EditProfile({trigger,profile,setProfile}) {
+  const { register, handleSubmit } = useForm();
      return (
+       <form onSubmit={handleSubmit((e)=>(console.log(e)))>
        <Dialog.Root placement={"center"}>
        <Dialog.Trigger>{trigger}</Dialog.Trigger>
        <Portal>
@@ -85,11 +87,21 @@ function EditProfile({trigger,profile,setProfile}) {
             <Dialog.Title>Edit Profile</Dialog.Title>
           </Dialog.Header>
           <Dialog.Body></Dialog.Body>
-          <Dialog.ActionTrigger></Dialog.ActionTrigger>
+           <Dialog.Footer>
+           <Dialog.ActionTrigger>
+              <Input
+              value={"Submit"}
+              type={"submit"}
+              cursor={"pointer"}
+              textAlign={"center"}
+            />
+          </Dialog.ActionTrigger>
+           </Dialog.Footer>
          </Dialog.Content>
        </Dialog.Positioner>
        </Portal>
        </Dialog.Root>
+         </form>
      )
 }
 
@@ -141,14 +153,6 @@ function ProfileModel() {
           );
         })}
         <HStack width={"inherit"}>
-          {isEdit ? (
-            <Input
-              value={"Submit"}
-              type={"submit"}
-              cursor={"pointer"}
-              textAlign={"center"}
-            />
-          ) : (
             <EditProfile trigger={(<Input
               value={"Edit"}
               type={"button"}
