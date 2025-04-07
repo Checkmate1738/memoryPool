@@ -74,7 +74,7 @@ function ProfileLink() {
 
 function EditProfile({trigger,profile,setProfile}) {
      return (
-       <Dialog.Root>
+       <Dialog.Root placement={"center"}>
        <Dialog.Trigger>{trigger}</Dialog.Trigger>
        <Portal>
        <Dialog.Backdrop/>
